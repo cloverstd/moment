@@ -63,7 +63,7 @@ var moment_replacements = map[string]string{
 	"ss": "05",              // stdZeroSecond ***00 01 ... 58 59
 	// "S"       : "", //0 1 ... 8 9
 	// "SS"      : "", //0 1 ... 98 99
-	// "SSS"     : "", //0 1 ... 998 999
+	"SSS":  ".000",                                       //0 1 ... 998 999
 	"z":    "MST",                                        //EST CST ... MST PST
 	"zz":   "MST",                                        //EST CST ... MST PST
 	"Z":    "Z07:00",                                     // stdNumColonTZ -07:00 -06:00 ... +06:00 +07:00

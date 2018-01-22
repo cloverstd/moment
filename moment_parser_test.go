@@ -1,12 +1,14 @@
-package moment
+package moment_test
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
+
+	"github.com/go-shadow/moment"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestMomentParser(t *testing.T) {
-	parser := new(MomentParser)
+	parser := new(moment.MomentParser)
 
 	Convey("Given moment month formats", t, func() {
 		Convey("It should generate the correct golang formats for months", func() {
@@ -98,6 +100,8 @@ func TestMomentParser(t *testing.T) {
 		Convey("It should generate the correct golang formats for seconds", func() {
 			So(parser.Convert("s"), ShouldEqual, "5")
 			So(parser.Convert("ss"), ShouldEqual, "05")
+
+			So(parser.Convert("SSS"), ShouldEqual, ".000")
 		})
 	})
 
@@ -106,11 +110,11 @@ func TestMomentParser(t *testing.T) {
 			So(parser.Convert("LT"), ShouldEqual, "3:04 PM")
 			So(parser.Convert("L"), ShouldEqual, "01/02/2006")
 			So(parser.Convert("l"), ShouldEqual, "1/2/2006")
-			So(parser.Convert("LL"), ShouldEqual, "January 2 2006")
+			So(parser.Convert("LL"), ShouldEqual, "January 2<stdOrdinal> 2006")
 			So(parser.Convert("ll"), ShouldEqual, "Jan 2 2006")
-			So(parser.Convert("LLL"), ShouldEqual, "January 2 2006 3:04 PM")
+			So(parser.Convert("LLL"), ShouldEqual, "January 2<stdOrdinal> 2006 3:04 PM")
 			So(parser.Convert("lll"), ShouldEqual, "Jan 2 2006 3:04 PM")
-			So(parser.Convert("LLLL"), ShouldEqual, "Monday, January 2 2006 3:04 PM")
+			So(parser.Convert("LLLL"), ShouldEqual, "Monday, January 2<stdOrdinal> 2006 3:04 PM")
 			So(parser.Convert("llll"), ShouldEqual, "Mon, Jan 2 2006 3:04 PM")
 		})
 	})
